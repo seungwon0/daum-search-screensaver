@@ -1,0 +1,34 @@
+Daum Search Screensaver
+=======================
+
+It installs Girl's Generation screensaver from Daum for Linux
+automatically.
+
+To use this screensaver, you may need to install mplayer.
+
+http://www.ubuntu.or.kr/viewtopic.php?p=66205
+
+
+Install
+=======
+
+	make
+	sudo make install
+
+
+Uninstall
+=========
+
+	sudo make uninstall
+
+
+URL
+===
+
+	https://github.com/seungwon0/daum-search-screensaver
+
+
+Author
+======
+
+	Seungwon Jeong <seungwon0@gmail.com>
