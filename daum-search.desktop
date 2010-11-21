@@ -1,0 +1,10 @@
+[Desktop Entry]
+Name=소시와 검색놀이
+Comment=다음검색 스크린 세이버
+Exec=daum-search-screensaver
+TryExec=daum-search-screensaver
+StartupNotify=false
+Terminal=false
+Type=Application
+Categories=GNOME;Screensaver
+OnlyShowIn=GNOME

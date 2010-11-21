@@ -1,0 +1,43 @@
+#! /bin/bash
+
+## setup MPlayer aruments, remove -nosound if you want the video
+## to play sound. If you have to specify the video driver to use
+## then add that to the list
+MPLAYERARGS="-nosound -nolirc -wid $XSCREENSAVER_WINDOW -nostop-xscreensaver -fs -really-quiet"
+
+## add videos to this list, one will be chosen and played, note
+## that wild cards can be used here
+VIDEOS=( /usr/share/daum-search-screensaver/*.mp4 )
+
+## child pid, no need to modify
+CPID=0
+
+## we handle SIGTERM and SIGINT here to kill the child
+## if active then quit.
+function ex {
+    if [ $CPID -gt 0 ]
+    then
+	kill -s 9 $CPID
+    fi
+    exit 0
+}
+trap ex SIGINT SIGTERM
+
+## loop while video list is not empty
+while [ ${#VIDEOS[*]} -gt 0 ]
+do
+    ## pick a random video
+    VIDEO=${VIDEOS["$RANDOM % ${#VIDEOS[*]}"]}
+
+    ## play video
+    mplayer $MPLAYERARGS "$VIDEO" &
+    CPID=$!
+    ## wait for video to finish
+    wait $CPID
+    ## if things went wrong then exit
+    if [ $? -ne 0 ]
+    then
+	exit 1
+    fi
+    CPID=0
+done
