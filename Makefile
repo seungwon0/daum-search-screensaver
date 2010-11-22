@@ -9,27 +9,30 @@ SHELL := /bin/sh
 screensaver := Daum_Screensaver_High_Mac_patch1.zip
 dl := http://search-down.daumcdn.net/girls/$(screensaver)
 
+videos := *.mp4
+
 datadir := /usr/share/daum-search-screensaver
 
 .SUFFIXES :
 
 .PHONY : all
-all : *.mp4
+all : $(videos)
 
-*.mp4 : $(screensaver)
-	unzip -j $(screensaver) '*.mp4'
+$(videos) : $(screensaver)
+	unzip -j $(screensaver) '$@'
 
 $(screensaver) :
 	wget $(dl)
 
 .PHONY : clean
 clean :
-	-rm -f *.mp4 $(screensaver)
+	-rm -f $(screensaver)
+	-rm -f $(videos)
 
 .PHONY : install
-install : *.mp4 daum-search.desktop daum-search-screensaver
+install : $(videos) daum-search.desktop daum-search-screensaver
 	install -d $(datadir)
-	install -m 644 *.mp4 $(datadir)
+	install -m 644 $(videos) $(datadir)
 	install -m 644 daum-search.desktop \
 	    /usr/share/applications/screensavers/daum-search.desktop
 	install -m 755 daum-search-screensaver \
