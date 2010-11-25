@@ -1,4 +1,4 @@
-# Makefile for Daum search screensaver
+# Makefile for Daum Search Screensaver
 #
 # Seungwon Jeong <seungwon0@gmail.com>
 #
@@ -20,7 +20,10 @@ datadir := /usr/share/daum-search-screensaver
 .SUFFIXES :
 
 .PHONY : all
-all : $(videos)
+all : playlist
+
+playlist : $(videos)
+	ls $^ | sed -e 's:^:$(datadir)/:' > $@
 
 $(videos) : $(archive)
 	unzip -j $(archive) '$@'
@@ -30,13 +33,15 @@ $(archive) :
 
 .PHONY : clean
 clean :
-	-rm -f $(archive)
+	-rm -f playlist
 	-rm -f $(videos)
+	-rm -f $(archive)
 
 .PHONY : install
-install : $(videos) daum-search.desktop daum-search-screensaver
+install : playlist $(videos) daum-search.desktop daum-search-screensaver
 	mkdir $(datadir)
-	$(INSTALL_DATA) $(videos) $(datadir)
+	$(INSTALL_DATA) playlist $(datadir)/playlist
+	$(INSTALL_DATA) $(videos) $(datadir)/
 	$(INSTALL_DATA) daum-search.desktop \
 	    /usr/share/applications/screensavers/daum-search.desktop
 	$(INSTALL_PROGRAM) daum-search-screensaver \
