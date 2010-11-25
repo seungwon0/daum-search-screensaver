@@ -6,6 +6,10 @@
 
 SHELL := /bin/sh
 
+INSTALL := install
+INSTALL_PROGRAM := $(INSTALL)
+INSTALL_DATA := $(INSTALL) -m 644
+
 screensaver := Daum_Screensaver_High_Mac_patch1.zip
 dl := http://search-down.daumcdn.net/girls/$(screensaver)
 
@@ -32,10 +36,10 @@ clean :
 .PHONY : install
 install : $(videos) daum-search.desktop daum-search-screensaver
 	install -d $(datadir)
-	install -m 644 $(videos) $(datadir)
-	install -m 644 daum-search.desktop \
+	$(INSTALL_DATA) $(videos) $(datadir)
+	$(INSTALL_DATA) daum-search.desktop \
 	    /usr/share/applications/screensavers/daum-search.desktop
-	install -m 755 daum-search-screensaver \
+	$(INSTALL_PROGRAM) daum-search-screensaver \
 	    /usr/lib/gnome-screensaver/gnome-screensaver/daum-search-screensaver
 
 .PHONY : uninstall
