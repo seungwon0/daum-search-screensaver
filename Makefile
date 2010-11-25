@@ -35,9 +35,7 @@ clean :
 
 .PHONY : install
 install : $(videos) daum-search.desktop daum-search-screensaver
-	-mkdir /usr
-	-mkdir /usr/share/
-	-mkdir $(datadir)
+	mkdir $(datadir)
 	$(INSTALL_DATA) $(videos) $(datadir)
 	$(INSTALL_DATA) daum-search.desktop \
 	    /usr/share/applications/screensavers/daum-search.desktop
