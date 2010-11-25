@@ -10,8 +10,8 @@ INSTALL := install
 INSTALL_PROGRAM := $(INSTALL)
 INSTALL_DATA := $(INSTALL) -m 644
 
-screensaver := Daum_Screensaver_High_Mac_patch1.zip
-dl := http://search-down.daumcdn.net/girls/$(screensaver)
+archive := Daum_Screensaver_High_Mac_patch1.zip
+dl := http://search-down.daumcdn.net/girls/$(archive)
 
 videos := *.mp4
 
@@ -22,15 +22,15 @@ datadir := /usr/share/daum-search-screensaver
 .PHONY : all
 all : $(videos)
 
-$(videos) : $(screensaver)
-	unzip -j $(screensaver) '$@'
+$(videos) : $(archive)
+	unzip -j $(archive) '$@'
 
-$(screensaver) :
+$(archive) :
 	wget $(dl)
 
 .PHONY : clean
 clean :
-	-rm -f $(screensaver)
+	-rm -f $(archive)
 	-rm -f $(videos)
 
 .PHONY : install
