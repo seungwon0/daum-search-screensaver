@@ -11,7 +11,7 @@ dl := http://search-down.daumcdn.net/girls/$(screensaver)
 
 videos := *.mp4
 
-datadir := /usr/share/daum-search-screensaver
+datadir := $(DESTDIR)/usr/share/daum-search-screensaver
 
 .SUFFIXES :
 
@@ -26,7 +26,7 @@ $(screensaver) :
 
 .PHONY : clean
 clean :
-	-rm -f $(screensaver)
+	#-rm -f $(screensaver)
 	-rm -f $(videos)
 
 .PHONY : install
@@ -34,9 +34,9 @@ install : $(videos) daum-search.desktop daum-search-screensaver
 	install -d $(datadir)
 	install -m 644 $(videos) $(datadir)
 	install -m 644 daum-search.desktop \
-	    /usr/share/applications/screensavers/daum-search.desktop
+	    $(DESTDIR)/usr/share/applications/screensavers/daum-search.desktop
 	install -m 755 daum-search-screensaver \
-	    /usr/lib/gnome-screensaver/gnome-screensaver/daum-search-screensaver
+	    $(DESTDIR)/usr/lib/gnome-screensaver/gnome-screensaver/daum-search-screensaver
 
 .PHONY : uninstall
 uninstall :
