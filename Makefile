@@ -1,4 +1,4 @@
-# Makefile for Daum search screensaver
+# Makefile for Daum Search Screensaver
 #
 # Seungwon Jeong <seungwon0@gmail.com>
 #
@@ -6,8 +6,12 @@
 
 SHELL := /bin/sh
 
-screensaver := Daum_Screensaver_High_Mac_patch1.zip
-dl := http://search-down.daumcdn.net/girls/$(screensaver)
+INSTALL := install
+INSTALL_PROGRAM := $(INSTALL)
+INSTALL_DATA := $(INSTALL) -m 644
+
+archive := Daum_Screensaver_High_Mac_patch1.zip
+dl := http://search-down.daumcdn.net/girls/$(archive)
 
 videos := *.mp4
 
@@ -16,26 +20,31 @@ datadir := $(DESTDIR)/usr/share/daum-search-screensaver
 .SUFFIXES :
 
 .PHONY : all
-all : $(videos)
+all : playlist
 
-$(videos) : $(screensaver)
-	unzip -j $(screensaver) '$@'
+playlist : $(videos)
+	ls $^ | sed -e 's:^:$(datadir)/:' > $@
 
-$(screensaver) :
+$(videos) : $(archive)
+	unzip -j $(archive) '$@'
+
+$(archive) :
 	wget $(dl)
 
 .PHONY : clean
 clean :
-	#-rm -f $(screensaver)
+	-rm -f playlist
 	-rm -f $(videos)
+	#-rm -f $(archive)
 
 .PHONY : install
-install : $(videos) daum-search.desktop daum-search-screensaver
-	install -d $(datadir)
-	install -m 644 $(videos) $(datadir)
-	install -m 644 daum-search.desktop \
+install : playlist $(videos) daum-search.desktop daum-search-screensaver
+	mkdir $(datadir)
+	$(INSTALL_DATA) playlist $(datadir)/playlist
+	$(INSTALL_DATA) $(videos) $(datadir)/
+	$(INSTALL_DATA) daum-search.desktop \
 	    $(DESTDIR)/usr/share/applications/screensavers/daum-search.desktop
-	install -m 755 daum-search-screensaver \
+	$(INSTALL_PROGRAM) daum-search-screensaver \
 	    $(DESTDIR)/usr/lib/gnome-screensaver/gnome-screensaver/daum-search-screensaver
 
 .PHONY : uninstall

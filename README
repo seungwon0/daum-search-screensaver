@@ -1,19 +1,21 @@
 Daum Search Screensaver
 =======================
 
-It installs Girl's Generation screensaver from Daum for Linux
-automatically.
+This is Girl's Generation screensaver installer for Linux.
 
 Girl's Generation(소녀시대) is a nine-member South Korean girl group.
 
-Daum made this screensaver for their search engine promotion. They
-provide this screensaver only for Windows and MAC, not Linux. :(
+Daum(popular web portal in South Korea) made this screensaver for its
+search engine promotion. Daum provides this screensaver only for
+Windows and MAC, not Linux. :(
 
 http://search.daum.net/search?w=tot&t__nil_searchbox=suggest&q=%40%BC%D2%B3%E0%BD%C3%B4%EB%BF%CD%20%B0%CB%BB%F6%B3%EE%C0%CC
 
 To use this screensaver, you need to install mplayer.
 
+This installer is based on the following links:
 http://www.ubuntu.or.kr/viewtopic.php?p=66205
+http://www.uluga.ubuntuforums.org/showthread.php?t=1368224
 
 
 Install
