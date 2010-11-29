@@ -39,7 +39,7 @@ clean :
 
 .PHONY : install
 install : playlist $(videos) daum-search.desktop daum-search-screensaver
-	mkdir $(datadir)
+	mkdir -p $(datadir)
 	$(INSTALL_DATA) playlist $(datadir)/playlist
 	$(INSTALL_DATA) $(videos) $(datadir)/
 	$(INSTALL_DATA) daum-search.desktop \
