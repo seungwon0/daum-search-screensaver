@@ -50,5 +50,5 @@ install : playlist $(videos) daum-search.desktop daum-search-screensaver
 .PHONY : uninstall
 uninstall :
 	-rm -rf $(datadir)
-	-rm -f /usr/share/applications/screensavers/daum-search.desktop
-	-rm -f /usr/lib/gnome-screensaver/gnome-screensaver/daum-search-screensaver
+	-rm -f $(DESTDIR)/usr/share/applications/screensavers/daum-search.desktop
+	-rm -f $(DESTDIR)/usr/lib/gnome-screensaver/gnome-screensaver/daum-search-screensaver
