@@ -19,28 +19,28 @@ http://www.uluga.ubuntuforums.org/showthread.php?t=1368224
 
 
 Install
-=======
+-------
 
-	$ make
-	$ sudo make install
+% make
+% make install
 
 Then, you can see '소시와 검색놀이' theme in GNOME Screensaver
 Prefereces (System -> Preferences -> Screensavers).
 
 
 Uninstall
-=========
+---------
 
-	$ sudo make uninstall
+% make uninstall
 
 
 URL
-===
+---
 
 https://github.com/seungwon0/daum-search-screensaver
 
 
 Author
-======
+------
 
 Seungwon Jeong <seungwon0@gmail.com>
