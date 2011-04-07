@@ -1,3 +1,9 @@
+# Sconstruct for Daum Search Screensaver
+#
+# Seungwon Jeong <seungwon0@gmail.com>
+#
+# Copyright (C) 2011 by Seungwon Jeong
+
 archive = 'Daum_Screensaver_High_Mac_patch1.zip'
 dl = 'http://imgsrc.search.daum-img.net/download/girls/' + archive
 
