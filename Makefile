@@ -2,7 +2,7 @@
 #
 # Seungwon Jeong <seungwon0@gmail.com>
 #
-# Copyright (C) 2010 by Seungwon Jeong
+# Copyright (C) 2010, 2011 by Seungwon Jeong
 
 SHELL := /bin/sh
 
@@ -11,11 +11,13 @@ INSTALL_PROGRAM := $(INSTALL)
 INSTALL_DATA := $(INSTALL) -m 644
 
 archive := Daum_Screensaver_High_Mac_patch1.zip
-dl := http://search-down.daumcdn.net/girls/$(archive)
+dl := http://imgsrc.search.daum-img.net/download/girls/$(archive)
 
 videos := *.mp4
 
 datadir := $(DESTDIR)/usr/share/daum-search-screensaver
+screensaver_dir := $(DESTDIR)/usr/share/applications/screensavers
+gnome_screensaver_dir := $(DESTDIR)/usr/lib/gnome-screensaver/gnome-screensaver
 
 .SUFFIXES :
 
@@ -35,7 +37,6 @@ $(archive) :
 clean :
 	-rm -f playlist
 	-rm -f $(videos)
-	#-rm -f $(archive)
 
 .PHONY : install
 install : playlist $(videos) daum-search.desktop daum-search-screensaver
@@ -43,12 +44,12 @@ install : playlist $(videos) daum-search.desktop daum-search-screensaver
 	$(INSTALL_DATA) playlist $(datadir)/playlist
 	$(INSTALL_DATA) $(videos) $(datadir)/
 	$(INSTALL_DATA) daum-search.desktop \
-	    $(DESTDIR)/usr/share/applications/screensavers/daum-search.desktop
+	    $(screensaver_dir)/daum-search.desktop
 	$(INSTALL_PROGRAM) daum-search-screensaver \
-	    $(DESTDIR)/usr/lib/gnome-screensaver/gnome-screensaver/daum-search-screensaver
+	    $(gnome_screensaver_dir)/daum-search-screensaver
 
 .PHONY : uninstall
 uninstall :
 	-rm -rf $(datadir)
-	-rm -f $(DESTDIR)/usr/share/applications/screensavers/daum-search.desktop
-	-rm -f $(DESTDIR)/usr/lib/gnome-screensaver/gnome-screensaver/daum-search-screensaver
+	-rm -f $(screensaver_dir)/daum-search.desktop
+	-rm -f $(gnome_screensaver_dir)/daum-search-screensaver
