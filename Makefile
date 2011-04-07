@@ -28,7 +28,7 @@ playlist : $(videos)
 	ls $^ | sed -e 's:^:$(datadir)/:' > $@
 
 $(videos) : $(archive)
-	unzip -j $(archive) '$@'
+	unzip -o -j $(archive) '$@'
 
 $(archive) :
 	wget $(dl)

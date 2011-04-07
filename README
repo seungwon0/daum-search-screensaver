@@ -11,7 +11,7 @@ Windows and MAC, not Linux. :(
 
 http://search.daum.net/search?w=tot&t__nil_searchbox=suggest&q=%40%BC%D2%B3%E0%BD%C3%B4%EB%BF%CD%20%B0%CB%BB%F6%B3%EE%C0%CC
 
-To use this screensaver, you need to install mplayer.
+This screensaver requires mplayer.
 
 This installer is based on the following links:
 http://www.ubuntu.or.kr/viewtopic.php?p=66205
@@ -23,6 +23,12 @@ Install
 
 % make
 % make install
+or
+% scons
+% scons install
+
+(You probably need root privilege to execute 'make install' or 'scons
+install' command.)
 
 Then, you can see '소시와 검색놀이' theme in GNOME Screensaver
 Prefereces (System -> Preferences -> Screensavers).
@@ -32,6 +38,10 @@ Uninstall
 ---------
 
 % make uninstall
+or
+% scons -c install
+
+(You probably need root privileage to execute above commands.)
 
 
 URL

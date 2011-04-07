@@ -1,0 +1,27 @@
+archive = 'Daum_Screensaver_High_Mac_patch1.zip'
+dl = 'http://imgsrc.search.daum-img.net/download/girls/' + archive
+
+videos = '*.mp4'
+
+datadir               = '/usr/share/daum-search-screensaver'
+screensaver_dir       = '/usr/share/applications/screensavers'
+gnome_screensaver_dir = '/usr/lib/gnome-screensaver/gnome-screensaver'
+
+NoClean(Command(archive, None, 'wget %s' % (dl)))
+
+playlist = Command('playlist', archive,
+                   ["unzip -o -j $SOURCE '%s'" % (videos),
+                    "ls %s | sed -e 's:^:%s/:' > $TARGET" % (videos, datadir)])
+
+Clean(playlist, Glob(videos))
+
+Default(playlist)
+
+Install(datadir, playlist)
+Install(datadir, Glob(videos))
+Install(screensaver_dir, 'daum-search.desktop')
+Install(gnome_screensaver_dir, 'daum-search-screensaver')
+
+Alias('install', [datadir, screensaver_dir, gnome_screensaver_dir])
+
+Clean('install', datadir)
